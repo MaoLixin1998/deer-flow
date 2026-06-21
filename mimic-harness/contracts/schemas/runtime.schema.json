@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/runtime.schema.json",
+  "title": "RuntimeInfo",
+  "description": "运行时服务信息。前端用它判断当前要调用 Java Agent 还是 Python Agent，以及服务是否可用。",
+  "type": "object",
+  "required": ["runtime", "serviceName", "status", "baseUrl", "mockMode"],
+  "properties": {
+    "runtime": {
+      "type": "string",
+      "description": "运行时类型。java 表示 Java 后端实现，python 表示 Python 后端实现。",
+      "enum": ["java", "python"]
+    },
+    "serviceName": {
+      "type": "string",
+      "description": "服务展示名，用于前端设置页或健康检查页展示。"
+    },
+    "status": {
+      "type": "string",
+      "description": "服务状态。online 可用，offline 不可用，degraded 表示降级可用。",
+      "enum": ["online", "offline", "degraded"]
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "该运行时服务的基础地址，Phase 1 用于展示和 mock 联调。"
+    },
+    "mockMode": {
+      "type": "boolean",
+      "description": "是否处于 mock 模式。Phase 1 必须为 true，表示不调用真实模型和真实工具。"
+    },
+    "message": {
+      "type": "string",
+      "description": "中文状态提示，例如服务启动成功、服务离线、已进入降级模式。"
+    }
+  },
+  "additionalProperties": false
+}

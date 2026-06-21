@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/asset.schema.json",
+  "title": "CreativeAsset",
+  "description": "创意素材。一次 Agent run 最终会产出生图、视频分镜、HTML 或合规报告等素材。",
+  "type": "object",
+  "required": ["assetId", "runId", "type", "title", "status", "createdAt"],
+  "properties": {
+    "assetId": {
+      "type": "string",
+      "description": "素材 ID。用于素材列表、预览、下载和 trace 关联。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。表示该素材由哪一次 Agent run 生成。"
+    },
+    "type": {
+      "type": "string",
+      "description": "素材类型。image 是图片，video_storyboard 是视频分镜，html 是落地页 HTML，compliance_report 是合规报告。",
+      "enum": ["image", "video_storyboard", "html", "compliance_report"]
+    },
+    "title": {
+      "type": "string",
+      "description": "素材标题，前端卡片主标题直接展示。"
+    },
+    "description": {
+      "type": "string",
+      "description": "素材说明，解释该素材的创意方向或用途。"
+    },
+    "status": {
+      "type": "string",
+      "description": "素材生成状态。前端根据它展示 loading、成功卡片或失败提示。",
+      "enum": ["pending", "running", "succeeded", "failed"]
+    },
+    "previewUrl": {
+      "type": "string",
+      "description": "预览地址。Phase 1 可以使用占位图片或本地静态资源。"
+    },
+    "htmlSnippet": {
+      "type": "string",
+      "description": "HTML 素材片段。仅 type=html 时使用，前端需要做安全预览处理。"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "素材扩展信息，例如尺寸、风格、分镜序号、合规标签等。",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "素材创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

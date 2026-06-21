@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2320" viewBox="0 0 1800 2320" role="img" aria-labelledby="title desc">
+  <title id="title">Codex-like Product Panel V5 Browser Multi-state Workbench</title>
+  <desc id="desc">V5 桌面端：恢复六张浏览器状态图，所有状态都像真实浏览器网页应用，输入框贴底部。</desc>
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .browser { fill: #ffffff; stroke: #d4d4d8; stroke-width: 1.2; }
+      .chrome { fill: #f4f4f5; }
+      .address { fill: #ffffff; stroke: #e4e4e7; stroke-width: 1; }
+      .pane { fill: #ffffff; }
+      .pane-soft { fill: #f7f7f8; }
+      .canvas { fill: #ededee; }
+      .line { stroke: #e4e4e7; stroke-width: 1.1; }
+      .strong-line { stroke: #d4d4d8; stroke-width: 1.5; }
+      .pill { fill: #f4f4f5; stroke: #e4e4e7; stroke-width: 1; }
+      .asset { fill: #f7f7f8; stroke: #dedee3; stroke-width: 1; }
+      .dark { fill: #18181b; }
+      .dot-red { fill: #ff5f57; }
+      .dot-yellow { fill: #ffbd2e; }
+      .dot-green { fill: #28c840; }
+      .text { fill: #18181b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .muted { fill: #71717a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .tiny { font-size: 12px; }
+      .small { font-size: 15px; }
+      .mid { font-size: 21px; font-weight: 750; }
+      .big { font-size: 34px; font-weight: 800; }
+      .label { font-size: 14px; font-weight: 750; }
+      .icon-white { fill: none; stroke: #ffffff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-light { fill: none; stroke: #8e8e93; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+      .shadow { filter: drop-shadow(0 18px 38px rgba(24,24,27,0.10)); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1800" height="2320"/>
+  <text class="text big" x="64" y="64">V5 / Desktop Browser Multi-state Workbench</text>
+  <text class="muted small" x="64" y="98">恢复多状态：六张图都必须像浏览器里的真实网页应用。输入框贴近底部，Pane 顶满，只用分割线。</text>
+
+  <!-- 01 Default -->
+  <g transform="translate(64,150)">
+    <text class="text mid" x="0" y="-24">01 默认浏览器态</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench</text>
+    <rect class="pane-soft" x="0" y="51" width="190" height="509"/>
+    <line class="strong-line" x1="190" y1="51" x2="190" y2="560"/>
+    <rect class="pane" x="191" y="51" width="577" height="509"/>
+    <line class="strong-line" x1="768" y1="51" x2="768" y2="560"/>
+    <rect class="pane-soft" x="769" y="51" width="51" height="509"/>
+    <text class="text label" x="24" y="91">会话</text>
+    <rect class="pill" x="22" y="116" width="146" height="42" rx="10"/>
+    <text class="text tiny" x="38" y="142">夏季气泡咖啡</text>
+    <rect class="pill" x="22" y="170" width="146" height="42" rx="10"/>
+    <text class="muted tiny" x="38" y="196">新品首图探索</text>
+    <text class="text mid" x="374" y="230">AIGC 创意生产 Agent</text>
+    <text class="muted tiny" x="350" y="260">生图 / 生视频 / 生 HTML / 工作流</text>
+    <rect class="pill" x="282" y="486" width="410" height="46" rx="18"/>
+    <text class="muted tiny" x="306" y="514">给夏季气泡咖啡生成首图和落地页...</text>
+    <circle class="dark" cx="666" cy="509" r="17"/>
+    <path class="icon-white" d="M666 518 V500"/><path class="icon-white" d="M659 507 l7 -7 7 7"/>
+    <rect fill="none" stroke="#8e8e93" stroke-width="1.7" x="786" y="86" width="16" height="16" rx="3"/>
+    <path class="icon-light" d="M790 98 l4 -4 3 3 2 -2 3 3"/>
+    <rect fill="none" stroke="#8e8e93" stroke-width="1.7" x="785" y="132" width="18" height="14" rx="3"/>
+    <path class="icon-light" d="M789 128 h18 v14"/>
+    <circle fill="none" stroke="#8e8e93" stroke-width="1.7" cx="794" cy="186" r="4"/>
+    <circle fill="none" stroke="#8e8e93" stroke-width="1.7" cx="794" cy="202" r="4"/>
+    <path class="icon-light" d="M794 190 v8"/>
+  </g>
+
+  <!-- 02 Left drawer -->
+  <g transform="translate(916,150)">
+    <text class="text mid" x="0" y="-24">02 左侧会话抽屉展开</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench?drawer=threads</text>
+    <rect class="pane-soft" x="0" y="51" width="300" height="509"/>
+    <line class="strong-line" x1="300" y1="51" x2="300" y2="560"/>
+    <rect class="pane" x="301" y="51" width="519" height="509"/>
+    <text class="text label" x="28" y="94">会话列表</text>
+    <rect class="pill" x="28" y="118" width="244" height="34" rx="10"/>
+    <text class="muted tiny" x="44" y="139">搜索对话、素材、runId</text>
+    <rect class="pill" x="28" y="178" width="244" height="52" rx="12"/>
+    <text class="text tiny" x="46" y="207">夏季气泡咖啡 / 4 个素材</text>
+    <rect class="pill" x="28" y="244" width="244" height="52" rx="12"/>
+    <text class="muted tiny" x="46" y="273">AIGC 电商首图 / 3 个版本</text>
+    <text class="text mid" x="444" y="250">对话区保持稳定</text>
+    <rect class="pill" x="382" y="486" width="330" height="46" rx="18"/>
+  </g>
+
+  <!-- 03 Right tool menu -->
+  <g transform="translate(64,790)">
+    <text class="text mid" x="0" y="-24">03 右侧产品工具展开</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench?panel=tools</text>
+    <rect class="pane" x="0" y="51" width="560" height="509"/>
+    <line class="strong-line" x1="560" y1="51" x2="560" y2="560"/>
+    <rect class="pane-soft" x="561" y="51" width="259" height="509"/>
+    <text class="text mid" x="208" y="240">中间对话区</text>
+    <rect class="pill" x="110" y="486" width="340" height="46" rx="18"/>
+    <text class="text label" x="590" y="94">创意工具</text>
+    <rect fill="none" stroke="#18181b" stroke-width="1.8" x="590" y="130" width="16" height="16" rx="3"/>
+    <path class="icon-light" d="M594 142 l4 -4 3 3 2 -2 3 3"/>
+    <text class="text tiny" x="618" y="143">画板</text>
+    <rect fill="none" stroke="#8e8e93" stroke-width="1.7" x="590" y="178" width="18" height="14" rx="3"/>
+    <path class="icon-light" d="M594 174 h18 v14"/>
+    <text class="muted tiny" x="618" y="191">素材</text>
+    <circle fill="none" stroke="#8e8e93" stroke-width="1.7" cx="598" cy="232" r="4"/>
+    <circle fill="none" stroke="#8e8e93" stroke-width="1.7" cx="614" cy="232" r="4"/>
+    <path class="icon-light" d="M602 232 h8"/>
+    <text class="muted tiny" x="626" y="239">工作流</text>
+    <path class="icon-light" d="M606 274 l-8 8 8 8"/>
+    <path class="icon-light" d="M614 274 l8 8 -8 8"/>
+    <text class="muted tiny" x="632" y="286">HTML</text>
+    <path class="icon-light" d="M590 324 h28 v18 h-28 z"/>
+    <path class="icon-light" d="M604 318 v16"/>
+    <path class="icon-light" d="M598 324 l6 -6 6 6"/>
+    <text class="muted tiny" x="630" y="334">导出</text>
+  </g>
+
+  <!-- 04 Canvas expanded -->
+  <g transform="translate(916,790)">
+    <text class="text mid" x="0" y="-24">04 画板展开：左 1/3 + 右画板</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench?canvas=open</text>
+    <rect class="pane" x="0" y="51" width="268" height="509"/>
+    <line class="strong-line" x1="268" y1="51" x2="268" y2="560"/>
+    <rect class="canvas" x="269" y="51" width="551" height="509"/>
+    <text class="text label" x="28" y="94">对话驱动画板</text>
+    <rect class="pill" x="28" y="486" width="204" height="46" rx="18"/>
+    <text class="muted tiny" x="46" y="514">重绘杯身气泡感...</text>
+    <rect class="asset" x="344" y="110" width="340" height="340" rx="24"/>
+    <text class="muted tiny" x="382" y="494">画板区域在浏览器内容区内顶满展开</text>
+  </g>
+
+  <!-- 05 Canvas editing -->
+  <g transform="translate(64,1430)">
+    <text class="text mid" x="0" y="-24">05 图片编辑态</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench?canvas=edit</text>
+    <rect class="pane-soft" x="0" y="51" width="66" height="509"/>
+    <line class="strong-line" x1="66" y1="51" x2="66" y2="560"/>
+    <rect class="canvas" x="67" y="51" width="545" height="509"/>
+    <line class="strong-line" x1="612" y1="51" x2="612" y2="560"/>
+    <rect class="pane-soft" x="613" y="51" width="207" height="509"/>
+    <text class="muted tiny" x="28" y="120">选</text><text class="muted tiny" x="28" y="170">裁</text><text class="muted tiny" x="28" y="220">绘</text>
+    <rect class="asset" x="150" y="96" width="370" height="330" rx="24"/>
+    <rect fill="none" stroke="#18181b" stroke-width="1.8" x="640" y="80" width="18" height="18" rx="3"/>
+    <path class="icon-light" d="M644 86 h10 M644 92 h10"/>
+    <text class="text label" x="668" y="94">图层 / 历史</text>
+    <text class="muted tiny" x="640" y="140">主视觉</text>
+    <text class="muted tiny" x="640" y="184">选区蒙版</text>
+    <text class="muted tiny" x="640" y="228">文案组</text>
+  </g>
+
+  <!-- 06 Assets workflow -->
+  <g transform="translate(916,1430)">
+    <text class="text mid" x="0" y="-24">06 素材 / 工作流 / 导出</text>
+    <rect class="browser shadow" x="0" y="0" width="820" height="560" rx="16"/>
+    <rect class="chrome" x="0" y="0" width="820" height="50" rx="16"/>
+    <line class="line" x1="0" y1="50" x2="820" y2="50"/>
+    <circle class="dot-red" cx="26" cy="25" r="6"/><circle class="dot-yellow" cx="48" cy="25" r="6"/><circle class="dot-green" cx="70" cy="25" r="6"/>
+    <rect class="address" x="112" y="13" width="430" height="24" rx="12"/>
+    <text class="muted tiny" x="132" y="30">localhost:2026/workbench?panel=assets</text>
+    <rect class="pane" x="0" y="51" width="560" height="509"/>
+    <line class="strong-line" x1="560" y1="51" x2="560" y2="560"/>
+    <rect class="pane-soft" x="561" y="51" width="259" height="509"/>
+    <text class="text label" x="32" y="94">生成素材</text>
+    <rect class="asset" x="32" y="124" width="146" height="120" rx="14"/>
+    <rect class="asset" x="196" y="124" width="146" height="120" rx="14"/>
+    <rect class="asset" x="360" y="124" width="146" height="120" rx="14"/>
+    <circle fill="none" stroke="#18181b" stroke-width="1.8" cx="598" cy="88" r="4"/>
+    <circle fill="none" stroke="#18181b" stroke-width="1.8" cx="614" cy="88" r="4"/>
+    <path class="icon-light" d="M602 88 h8"/>
+    <text class="text label" x="630" y="94">工作流</text>
+    <text class="muted tiny" x="590" y="140">Plan  已完成</text>
+    <text class="muted tiny" x="590" y="184">Image 已完成</text>
+    <text class="muted tiny" x="590" y="228">HTML 待预览</text>
+    <text class="muted tiny" x="590" y="272">导出  待确认</text>
+    <rect class="pill" x="590" y="470" width="170" height="42" rx="16"/>
+    <path class="icon-light" d="M620 482 h24 v18 h-24 z"/>
+    <path class="icon-light" d="M632 478 v14"/>
+    <path class="icon-light" d="M626 484 l6 -6 6 6"/>
+    <text class="text tiny" x="654" y="496">打包导出</text>
+  </g>
+
+  <text class="muted small" x="64" y="2108">V5 验收：六张状态图都必须像浏览器窗口；输入框贴底部；左中右 Pane 顶满连续；右侧功能只放画板、素材、工作流、HTML、导出。</text>
+</svg>

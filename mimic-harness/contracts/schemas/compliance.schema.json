@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/compliance.schema.json",
+  "title": "ComplianceReview",
+  "description": "合规检查结果。用于判断生成的营销素材是否存在风险提示。",
+  "type": "object",
+  "required": ["reviewId", "runId", "status", "passed", "items", "createdAt"],
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "合规检查 ID。一次合规检查对应一条结果。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。表示该合规检查属于哪一次 Agent run。"
+    },
+    "status": {
+      "type": "string",
+      "description": "合规检查状态。前端根据它展示检查中、通过、失败等状态。",
+      "enum": ["pending", "running", "succeeded", "failed"]
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "是否整体通过。true 表示没有阻断风险，false 表示存在需要处理的问题。"
+    },
+    "summary": {
+      "type": "string",
+      "description": "中文合规总结，例如整体通过、存在夸大宣传风险等。"
+    },
+    "items": {
+      "type": "array",
+      "description": "合规检查明细列表。每条对应一条规则检查结果。",
+      "items": {
+        "type": "object",
+        "required": ["ruleCode", "title", "level", "passed"],
+        "properties": {
+          "ruleCode": {
+            "type": "string",
+            "description": "规则编码，例如 AD_CLAIM_RISK、BRAND_SAFETY。"
+          },
+          "title": {
+            "type": "string",
+            "description": "规则中文标题，用于前端展示。"
+          },
+          "level": {
+            "type": "string",
+            "description": "风险等级。info 信息，warning 警告，error 阻断。",
+            "enum": ["info", "warning", "error"]
+          },
+          "passed": {
+            "type": "boolean",
+            "description": "该规则是否通过。"
+          },
+          "detail": {
+            "type": "string",
+            "description": "中文检查详情，解释通过或失败原因。"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "合规检查创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

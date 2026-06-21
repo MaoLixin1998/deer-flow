@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/model.schema.json",
+  "title": "ModelInfo",
+  "description": "模型信息。前端用它展示可选模型，后端用它声明当前 mock 或真实模型能力。",
+  "type": "object",
+  "required": ["provider", "model", "displayName", "capabilities", "mock"],
+  "properties": {
+    "provider": {
+      "type": "string",
+      "description": "模型供应商，例如 qwen、doubao、hunyuan、mock。"
+    },
+    "model": {
+      "type": "string",
+      "description": "模型编码。真实接入时对应供应商模型 ID，Phase 1 可使用 mock 模型名。"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "前端展示名称，必须让用户能看懂模型用途。"
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "模型能力列表。用于判断是否支持文本、生图、生视频、HTML 或合规检查。",
+      "items": {
+        "type": "string",
+        "description": "单个模型能力。",
+        "enum": ["text", "image", "video", "html", "compliance"]
+      }
+    },
+    "mock": {
+      "type": "boolean",
+      "description": "是否为 mock 模型。true 表示只返回演示数据，不产生真实调用费用。"
+    }
+  },
+  "additionalProperties": false
+}

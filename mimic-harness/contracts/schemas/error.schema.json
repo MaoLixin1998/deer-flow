@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/error.schema.json",
+  "title": "ErrorResponse",
+  "description": "统一错误响应。前端、Java Runtime、Python Runtime 必须共用同一套错误码和中文提示。",
+  "type": "object",
+  "required": ["code", "message", "createdAt"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "错误码。必须使用枚举值，不能临时拼接新错误码。",
+      "enum": [
+        "RUNTIME_UNAVAILABLE",
+        "SSE_CONNECT_FAILED",
+        "SSE_STREAM_INTERRUPTED",
+        "RUN_FAILED",
+        "INVALID_REQUEST",
+        "INVALID_RUNTIME",
+        "UNKNOWN_EVENT_TYPE",
+        "INVALID_ASSET_PAYLOAD",
+        "EMPTY_HTML_PREVIEW",
+        "NOT_FOUND"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "中文错误提示。前端可直接展示给用户。"
+    },
+    "detail": {
+      "type": "string",
+      "description": "中文错误详情。用于开发排查，不能包含密钥、Token 或用户敏感信息。"
+    },
+    "requestId": {
+      "type": "string",
+      "description": "请求 ID。用于串联前端日志、后端日志和网关日志。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。如果错误发生在 Agent run 中，必须携带。"
+    },
+    "runtime": {
+      "type": "string",
+      "description": "错误来自哪个运行时。java 或 python。",
+      "enum": ["java", "python"]
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "错误产生时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

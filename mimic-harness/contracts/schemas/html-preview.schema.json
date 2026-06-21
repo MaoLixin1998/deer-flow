@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/html-preview.schema.json",
+  "title": "HtmlPreview",
+  "description": "HTML 预览结果。用于把 Agent 生成的落地页 HTML 片段渲染成可检查的预览。",
+  "type": "object",
+  "required": ["previewId", "runId", "htmlSnippet", "status", "createdAt"],
+  "properties": {
+    "previewId": {
+      "type": "string",
+      "description": "HTML 预览 ID。用于后续查询某次预览结果。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。表示该 HTML 预览属于哪一次 Agent run。"
+    },
+    "assetId": {
+      "type": "string",
+      "description": "关联素材 ID。由 HTML 类型素材生成预览时携带。"
+    },
+    "htmlSnippet": {
+      "type": "string",
+      "description": "HTML 片段。前端预览时必须隔离渲染，不能直接污染主页面。"
+    },
+    "status": {
+      "type": "string",
+      "description": "预览状态。created 表示创建成功，empty 表示 HTML 为空，failed 表示预览失败。",
+      "enum": ["created", "empty", "failed"]
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "预览创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/campaign.schema.json",
+  "title": "Campaign",
+  "description": "营销活动信息。它是一次 AIGC 创意生产任务的业务背景。",
+  "type": "object",
+  "required": ["campaignId", "title", "scenario", "brief", "createdAt"],
+  "properties": {
+    "campaignId": {
+      "type": "string",
+      "description": "营销活动 ID。用于把多次 run、素材、合规结果关联到同一个业务活动。"
+    },
+    "title": {
+      "type": "string",
+      "description": "营销活动标题，例如夏季气泡咖啡上市活动。"
+    },
+    "scenario": {
+      "type": "string",
+      "description": "演示场景编码。Phase 1 固定为夏季气泡咖啡营销素材生成。",
+      "enum": ["summer_bubble_coffee_campaign"]
+    },
+    "brief": {
+      "type": "string",
+      "description": "用户输入的创意简报，Agent 根据它规划生图、生视频、生 HTML 和合规检查。"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "最后更新时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

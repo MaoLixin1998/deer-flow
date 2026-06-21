@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1840" viewBox="0 0 1800 1840" role="img" aria-labelledby="title desc">
+  <title id="title">Ninic Creative Agent Studio V6 iOS Mobile</title>
+  <desc id="desc">白灰色 iOS 手机版方案：极简对话、会话抽屉、创意工具、横屏移动画板编辑。</desc>
+  <defs>
+    <style>
+      .page { fill: #fafafa; }
+      .phone { fill: #ffffff; stroke: #d4d4d8; stroke-width: 1.4; }
+      .screen { fill: #ffffff; }
+      .pane-soft { fill: #f7f7f8; }
+      .pane-mid { fill: #f1f1f2; }
+      .canvas { fill: #ededee; }
+      .line { stroke: #e4e4e7; stroke-width: 1.1; }
+      .strong-line { stroke: #d4d4d8; stroke-width: 1.5; }
+      .text { fill: #18181b; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .muted { fill: #71717a; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .tiny { font-size: 12px; }
+      .small { font-size: 15px; }
+      .mid { font-size: 20px; font-weight: 750; }
+      .big { font-size: 34px; font-weight: 800; }
+      .label { font-size: 13px; font-weight: 750; }
+      .pill { fill: #f4f4f5; stroke: #e4e4e7; stroke-width: 1; }
+      .dark { fill: #18181b; }
+      .asset { fill: #f5f5f5; stroke: #dedee3; stroke-width: 1; }
+      .handle { fill: #c9c9cf; }
+      .icon-light { fill: none; stroke: #8e8e93; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-white { fill: none; stroke: #ffffff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+      .shadow { filter: drop-shadow(0 16px 34px rgba(24,24,27,0.12)); }
+    </style>
+  </defs>
+
+  <rect class="page" width="1800" height="1840"/>
+  <text class="text big" x="56" y="62">V6 / iOS Mobile</text>
+  <text class="muted small" x="56" y="94">白 + 灰主视觉。移动端不是三栏缩小版，而是全屏 Pane、边缘抽屉、底部 Sheet、画板全屏编辑。</text>
+
+  <!-- 01 Default chat -->
+  <g transform="translate(64,150)">
+    <text class="text mid" x="0" y="-28">01 默认：极简对话</text>
+    <rect class="phone shadow" x="0" y="0" width="390" height="844" rx="42"/>
+    <rect class="screen" x="12" y="12" width="366" height="820" rx="34"/>
+    <rect class="screen" x="22" y="30" width="346" height="786" rx="28"/>
+    <text class="text tiny" x="44" y="58">9:41</text>
+    <rect class="dark" x="174" y="42" width="42" height="12" rx="6"/>
+    <text class="text label" x="42" y="104">Ninic</text>
+    <text class="muted tiny" x="42" y="128">AIGC 创意生产 Agent</text>
+    <text class="muted small" x="330" y="112">工具</text>
+    <line class="line" x1="22" y1="150" x2="368" y2="150"/>
+
+    <text class="text mid" x="66" y="310">今天要生成什么？</text>
+    <text class="muted tiny" x="82" y="340">生图 / 生视频 / 生 HTML / 工作流</text>
+    <text class="muted tiny" x="84" y="388">输入区只保留底部一个，避免两个对话框歧义。</text>
+
+    <line class="line" x1="22" y1="736" x2="368" y2="736"/>
+    <rect class="pill" x="40" y="756" width="296" height="42" rx="18"/>
+    <text class="muted tiny" x="58" y="782">输入创意 brief...</text>
+    <g transform="translate(272,765)">
+      <path class="icon-light" d="M10 3 v9 a6 6 0 0 0 12 0 V3"/>
+      <path class="icon-light" d="M6 12 a10 10 0 0 0 20 0"/>
+      <path class="icon-light" d="M16 22 v6"/>
+      <path class="icon-light" d="M11 28 h10"/>
+    </g>
+    <circle class="dark" cx="318" cy="777" r="18"/>
+    <path class="icon-white" d="M318 787 V768"/>
+    <path class="icon-white" d="M310 776 l8 -8 8 8"/>
+    <text class="muted tiny" x="130" y="824">默认状态只保留对话核心</text>
+  </g>
+
+  <!-- 02 Left conversation drawer -->
+  <g transform="translate(504,150)">
+    <text class="text mid" x="0" y="-28">02 左侧：会话抽屉</text>
+    <rect class="phone shadow" x="0" y="0" width="390" height="844" rx="42"/>
+    <rect class="screen" x="12" y="12" width="366" height="820" rx="34"/>
+    <rect class="screen" x="22" y="30" width="346" height="786" rx="28"/>
+    <rect class="pane-soft" x="22" y="30" width="286" height="786" rx="28"/>
+    <line class="strong-line" x1="308" y1="30" x2="308" y2="816"/>
+    <rect fill="rgba(255,255,255,0.72)" x="309" y="30" width="59" height="786"/>
+
+    <text class="text tiny" x="44" y="58">9:41</text>
+    <rect class="dark" x="174" y="42" width="42" height="12" rx="6"/>
+    <text class="text label" x="46" y="104">会话</text>
+    <text class="muted tiny" x="46" y="128">从左侧丝滑滑入，顶满屏幕</text>
+    <line class="line" x1="22" y1="150" x2="308" y2="150"/>
+
+    <rect class="pill" x="44" y="174" width="238" height="40" rx="14"/>
+    <text class="muted tiny" x="62" y="199">搜索对话、素材、runId</text>
+    <rect class="pill" x="44" y="240" width="238" height="62" rx="16"/>
+    <text class="text small" x="62" y="268">夏季气泡咖啡</text>
+    <text class="muted tiny" x="62" y="289">4 个素材 / 1 个 HTML</text>
+    <rect class="pill" x="44" y="318" width="238" height="62" rx="16"/>
+    <text class="text small" x="62" y="346">新品首图探索</text>
+    <text class="muted tiny" x="62" y="367">2 张图 / 3 个变体</text>
+    <rect class="pill" x="44" y="396" width="238" height="62" rx="16"/>
+    <text class="text small" x="62" y="424">短视频分镜</text>
+    <text class="muted tiny" x="62" y="445">6 镜头脚本待审</text>
+
+    <text class="muted tiny" x="64" y="760">动效：280ms spring slide</text>
+    <text class="muted tiny" x="64" y="784">右侧蒙层点击关闭</text>
+  </g>
+
+  <!-- 03 Product tool sheet -->
+  <g transform="translate(944,150)">
+    <text class="text mid" x="0" y="-28">03 工具：产品能力面板</text>
+    <rect class="phone shadow" x="0" y="0" width="390" height="844" rx="42"/>
+    <rect class="screen" x="12" y="12" width="366" height="820" rx="34"/>
+    <rect class="screen" x="22" y="30" width="346" height="786" rx="28"/>
+    <text class="text tiny" x="44" y="58">9:41</text>
+    <rect class="dark" x="174" y="42" width="42" height="12" rx="6"/>
+    <text class="text label" x="42" y="104">夏季气泡咖啡</text>
+    <text class="muted tiny" x="42" y="128">Agent 正在规划创意产物</text>
+    <line class="line" x1="22" y1="150" x2="368" y2="150"/>
+    <text class="text mid" x="80" y="318">生成首图和落地页</text>
+    <text class="muted tiny" x="76" y="350">点击工具进入画板、素材、工作流</text>
+
+    <rect class="pane-soft" x="22" y="452" width="346" height="364" rx="28"/>
+    <rect class="handle" x="164" y="468" width="62" height="5" rx="3"/>
+    <text class="text label" x="48" y="510">创意工具</text>
+    <text class="muted tiny" x="48" y="532">不是审查、终端、浏览器；只放本项目能力</text>
+    <line class="line" x1="22" y1="552" x2="368" y2="552"/>
+    <text class="text small" x="56" y="592">画板</text>
+    <text class="muted tiny" x="56" y="616">编辑生成图片、局部重绘、变体</text>
+    <line class="line" x1="48" y1="638" x2="342" y2="638"/>
+    <text class="text small" x="56" y="674">素材</text>
+    <text class="muted tiny" x="56" y="698">图片、视频分镜、HTML、合规报告</text>
+    <line class="line" x1="48" y1="720" x2="342" y2="720"/>
+    <text class="text small" x="56" y="756">工作流 / HTML / 导出</text>
+    <text class="muted tiny" x="56" y="780">查看步骤、预览页面、打包交付</text>
+  </g>
+
+  <!-- 04 Canvas editing landscape -->
+  <g transform="translate(64,1050)">
+    <text class="text mid" x="0" y="-28">04 画板：横屏全屏编辑</text>
+    <rect class="phone shadow" x="0" y="0" width="844" height="390" rx="42"/>
+    <rect class="screen" x="12" y="12" width="820" height="366" rx="34"/>
+    <rect class="canvas" x="30" y="22" width="786" height="346" rx="28"/>
+
+    <rect class="pane-soft" x="30" y="22" width="32" height="346" rx="16"/>
+    <line class="strong-line" x1="62" y1="22" x2="62" y2="368"/>
+    <rect fill="none" stroke="#8e8e93" stroke-width="1.8" x="39" y="176" width="14" height="24" rx="3"/>
+    <path class="icon-light" d="M45 181 v14"/>
+    <path class="icon-light" d="M49 188 l5 5 -5 5"/>
+
+    <circle class="dark" cx="772" cy="56" r="17"/>
+    <path class="icon-white" d="M764 56 l6 6 11 -13"/>
+
+    <rect class="asset" x="118" y="54" width="560" height="282" rx="24"/>
+    <rect class="pane-soft" x="316" y="116" width="170" height="160" rx="28"/>
+    <text class="muted tiny" x="300" y="350">画板顶天立地，没有独立 header，减少白套灰套白</text>
+
+    <circle class="dark" cx="777" cy="329" r="23"/>
+    <g transform="translate(765,315)">
+      <path class="icon-white" d="M6 3 v9 a6 6 0 0 0 12 0 V3"/>
+      <path class="icon-white" d="M2 12 a10 10 0 0 0 20 0"/>
+      <path class="icon-white" d="M12 22 v6"/>
+    </g>
+  </g>
+
+  <!-- Rules -->
+  <g transform="translate(64,1500)">
+    <rect class="phone" x="0" y="0" width="1672" height="300" rx="24"/>
+    <text class="text mid" x="32" y="48">V6 iOS 设计规则</text>
+    <text class="muted small" x="32" y="88">1. 颜色只用白、灰、黑；减少装饰色，让产品像专业工具。</text>
+    <text class="muted small" x="32" y="124">2. 移动端不照搬桌面三栏；默认一屏只突出对话，能力收进边缘抽屉和底部 Sheet。</text>
+    <text class="muted small" x="32" y="160">3. 左侧会话用覆盖式抽屉，从屏幕左边滑入；工具面板用底部 Sheet，符合 iOS 单手操作。</text>
+    <text class="muted small" x="32" y="196">4. 画板编辑态优先横屏全屏，聊天变成侧边或底部可缩放指令 Sheet；保留“对话驱动编辑”的 Agent 感。</text>
+    <text class="muted small" x="32" y="232">5. 右侧能力仍是画板、素材、工作流、HTML、导出，不出现审查、终端、浏览器等非本项目功能。</text>
+    <text class="muted small" x="32" y="268">6. 后续先确认 SVG，再同步 Figma，并在前端用 CSS transform + spring 曲线实现丝滑抽拉。</text>
+  </g>
+</svg>

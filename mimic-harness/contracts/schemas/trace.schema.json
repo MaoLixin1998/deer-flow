@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/trace.schema.json",
+  "title": "TraceEvent",
+  "description": "Agent 执行轨迹事件。用于展示规划、模型选择、工具调用、素材生成、降级等过程。",
+  "type": "object",
+  "required": ["eventId", "runId", "threadId", "runtime", "type", "title", "status", "createdAt"],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "轨迹事件 ID。用于前端 timeline key 和父子事件关联。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。表示这个 trace 属于哪一次 Agent 运行。"
+    },
+    "threadId": {
+      "type": "string",
+      "description": "会话 ID。用于跨页面查询当前会话的执行轨迹。"
+    },
+    "runtime": {
+      "type": "string",
+      "description": "产生该 trace 的运行时，java 或 python。",
+      "enum": ["java", "python"]
+    },
+    "type": {
+      "type": "string",
+      "description": "轨迹事件类型。用于前端选择图标、颜色和分组。",
+      "enum": [
+        "planner_started",
+        "planner_finished",
+        "model_selected",
+        "tool_call_started",
+        "tool_call_finished",
+        "asset_created",
+        "review_started",
+        "review_finished",
+        "fallback_placeholder"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "中文标题，例如开始规划、生成图片素材、合规检查完成。"
+    },
+    "detail": {
+      "type": "string",
+      "description": "中文详情，用于解释当前步骤做了什么。"
+    },
+    "status": {
+      "type": "string",
+      "description": "事件状态。前端 timeline 根据它展示等待、运行中、成功或失败。",
+      "enum": ["pending", "running", "succeeded", "failed"]
+    },
+    "toolName": {
+      "type": "string",
+      "description": "关联工具名称，例如 image_generator、html_builder、compliance_checker。"
+    },
+    "assetId": {
+      "type": "string",
+      "description": "关联素材 ID。素材生成事件应携带该字段。"
+    },
+    "parentEventId": {
+      "type": "string",
+      "description": "父级事件 ID。用于表达工具调用属于哪个规划步骤。"
+    },
+    "durationMs": {
+      "type": "integer",
+      "description": "事件耗时，单位毫秒。用于后续 AgentOps 性能分析。",
+      "minimum": 0
+    },
+    "payload": {
+      "type": "object",
+      "description": "扩展数据。Phase 1 可以放 mock 明细，但前端不能依赖未登记字段。",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "事件创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

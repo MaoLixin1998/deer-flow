@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/events/sse-events.schema.json",
+  "title": "Ninic Creative Agent Studio SSE Event",
+  "description": "Agent 运行时通过 SSE 推送给前端的事件协议。前端 reducer 必须按这些事件更新消息流、Trace 时间线和素材卡片。",
+  "oneOf": [
+    { "$ref": "#/$defs/runStarted" },
+    { "$ref": "#/$defs/messageDelta" },
+    { "$ref": "#/$defs/traceEvent" },
+    { "$ref": "#/$defs/runFinished" },
+    { "$ref": "#/$defs/runFailed" }
+  ],
+  "$defs": {
+    "runtime": {
+      "type": "string",
+      "description": "运行时类型。java 表示 Java Agent，python 表示 Python Agent。",
+      "enum": ["java", "python"]
+    },
+    "base": {
+      "type": "object",
+      "description": "所有 SSE 事件的公共字段。每个事件都必须能追踪到 run、thread、runtime 和创建时间。",
+      "required": ["event", "runId", "threadId", "runtime", "createdAt"],
+      "properties": {
+        "event": {
+          "type": "string",
+          "description": "事件名。前端根据它分发到不同 reducer。"
+        },
+        "runId": {
+          "type": "string",
+          "description": "运行 ID。一次生成任务从开始到结束必须保持同一个 runId。"
+        },
+        "threadId": {
+          "type": "string",
+          "description": "会话 ID。用于把 SSE 事件挂回当前工作台会话。"
+        },
+        "runtime": { "$ref": "#/$defs/runtime" },
+        "createdAt": {
+          "type": "string",
+          "description": "事件创建时间，ISO 8601 date-time 格式。",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "traceEventType": {
+      "type": "string",
+      "description": "Trace 事件类型。前端用它决定图标、分组、颜色和展示文案。",
+      "enum": [
+        "planner_started",
+        "planner_finished",
+        "model_selected",
+        "tool_call_started",
+        "tool_call_finished",
+        "asset_created",
+        "review_started",
+        "review_finished",
+        "fallback_placeholder"
+      ]
+    },
+    "traceStatus": {
+      "type": "string",
+      "description": "Trace 事件状态。用于展示等待、执行中、成功、失败。",
+      "enum": ["pending", "running", "succeeded", "failed"]
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "统一错误码。必须和 contracts/schemas/error.schema.json 保持一致。",
+      "enum": [
+        "RUNTIME_UNAVAILABLE",
+        "SSE_CONNECT_FAILED",
+        "SSE_STREAM_INTERRUPTED",
+        "RUN_FAILED",
+        "INVALID_REQUEST",
+        "INVALID_RUNTIME",
+        "UNKNOWN_EVENT_TYPE",
+        "INVALID_ASSET_PAYLOAD",
+        "EMPTY_HTML_PREVIEW",
+        "NOT_FOUND"
+      ]
+    },
+    "runStarted": {
+      "description": "运行开始事件。后端创建 run 后立刻推送，前端据此进入流式生成状态。",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["event", "scenario", "title"],
+          "properties": {
+            "event": {
+              "const": "run_started",
+              "description": "固定事件名：运行开始。"
+            },
+            "scenario": {
+              "const": "summer_bubble_coffee_campaign",
+              "description": "业务场景编码。Phase 1 固定为夏季气泡咖啡营销素材生成。"
+            },
+            "title": {
+              "type": "string",
+              "description": "本次运行标题，前端用于 run 卡片或顶部状态展示。"
+            }
+          }
+        }
+      ]
+    },
+    "messageDelta": {
+      "description": "消息增量事件。后端流式输出 Agent 文本时持续推送。",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["event", "delta"],
+          "properties": {
+            "event": {
+              "const": "message_delta",
+              "description": "固定事件名：消息增量。"
+            },
+            "delta": {
+              "type": "string",
+              "description": "本次追加的文本片段。前端需要按顺序拼接成完整 Agent 回复。"
+            }
+          }
+        }
+      ]
+    },
+    "traceEvent": {
+      "description": "轨迹事件。用于展示 Agent 规划、模型选择、工具调用、素材生成和降级过程。",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["event", "eventId", "type", "title", "status"],
+          "properties": {
+            "event": {
+              "const": "trace_event",
+              "description": "固定事件名：Trace 事件。"
+            },
+            "eventId": {
+              "type": "string",
+              "description": "Trace 事件 ID。用于前端 timeline key 和父子事件关联。"
+            },
+            "type": { "$ref": "#/$defs/traceEventType" },
+            "title": {
+              "type": "string",
+              "description": "中文标题，例如开始规划、调用生图工具、生成 HTML 页面。"
+            },
+            "detail": {
+              "type": "string",
+              "description": "中文详情，解释这一步具体做了什么。"
+            },
+            "status": { "$ref": "#/$defs/traceStatus" },
+            "toolName": {
+              "type": "string",
+              "description": "工具名称，例如 image_generator、html_builder、compliance_checker。"
+            },
+            "assetId": {
+              "type": "string",
+              "description": "关联素材 ID。素材生成完成时应该携带。"
+            },
+            "parentEventId": {
+              "type": "string",
+              "description": "父级 Trace 事件 ID。用于表达步骤归属关系。"
+            },
+            "durationMs": {
+              "type": "integer",
+              "description": "事件耗时，单位毫秒。",
+              "minimum": 0
+            },
+            "payload": {
+              "type": "object",
+              "description": "扩展数据。前端不能依赖未写入 contracts 的字段做核心逻辑。",
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    },
+    "runFinished": {
+      "description": "运行完成事件。后端完成最终回复和素材生成后推送，前端据此结束 loading。",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["event", "messageId", "assetIds"],
+          "properties": {
+            "event": {
+              "const": "run_finished",
+              "description": "固定事件名：运行完成。"
+            },
+            "messageId": {
+              "type": "string",
+              "description": "最终 Agent 回复消息 ID。"
+            },
+            "assetIds": {
+              "type": "array",
+              "description": "本次运行生成的素材 ID 列表。前端用它刷新素材卡片。",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      ]
+    },
+    "runFailed": {
+      "description": "运行失败事件。后端无法继续生成时推送，前端必须展示中文错误状态。",
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["event", "code", "message"],
+          "properties": {
+            "event": {
+              "const": "run_failed",
+              "description": "固定事件名：运行失败。"
+            },
+            "code": { "$ref": "#/$defs/errorCode" },
+            "message": {
+              "type": "string",
+              "description": "中文错误提示。前端可直接展示。"
+            },
+            "detail": {
+              "type": "string",
+              "description": "中文错误详情。用于排查，不能包含密钥、Token 或敏感信息。"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

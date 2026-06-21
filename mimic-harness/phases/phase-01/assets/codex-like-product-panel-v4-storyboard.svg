@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2300" viewBox="0 0 1800 2300" role="img" aria-labelledby="title desc">
+  <title id="title">Codex-like Product Panel V4 多状态原型</title>
+  <desc id="desc">Ninic Creative Agent Studio 的 V4 多状态原型：普通状态、左侧展开、右侧产品功能、画板展开、图片编辑。</desc>
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .window { fill: #fff; stroke: #e5e7eb; stroke-width: 1.5; }
+      .panel { fill: #f7f7f8; stroke: #e5e7eb; stroke-width: 1.2; }
+      .soft { fill: #f4f4f5; stroke: #e5e7eb; stroke-width: 1; }
+      .blue { fill: #eaf3ff; stroke: #7aa7f7; stroke-width: 1.2; }
+      .green { fill: #e8f7ef; stroke: #6fcf97; stroke-width: 1.2; }
+      .orange { fill: #fff7ed; stroke: #f6c177; stroke-width: 1.2; }
+      .black { fill: #18181b; }
+      .text { fill: #18181b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .muted { fill: #71717a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .tiny { font-size: 14px; }
+      .small { font-size: 17px; }
+      .mid { font-size: 22px; font-weight: 700; }
+      .big { font-size: 34px; font-weight: 800; }
+      .label { font-size: 15px; font-weight: 700; }
+    </style>
+  </defs>
+  <rect class="bg" width="1800" height="2300"/>
+  <text class="text big" x="48" y="58">Codex-like Product Panel / V4</text>
+  <text class="muted small" x="48" y="90">纠偏：类 Codex 是布局、抽拉和覆盖交互，不是照抄审查/终端/浏览器。右侧功能必须服务 AIGC 创意生产。</text>
+
+  <!-- State 01 -->
+  <rect class="window" x="48" y="140" width="820" height="420" rx="14"/>
+  <text class="text mid" x="72" y="178">01 普通状态</text>
+  <text class="muted tiny" x="72" y="204">中间对话框 + 左侧轻量对话列表，右侧关闭。</text>
+  <rect class="panel" x="72" y="230" width="190" height="290" rx="12"/>
+  <text class="text label" x="92" y="258">对话列表</text>
+  <rect class="window" x="92" y="282" width="150" height="38" rx="9"/>
+  <text class="text tiny" x="106" y="306">夏季气泡咖啡</text>
+  <rect class="soft" x="92" y="330" width="150" height="38" rx="9"/>
+  <text class="muted tiny" x="106" y="354">新品首图探索</text>
+  <rect class="soft" x="92" y="378" width="150" height="38" rx="9"/>
+  <text class="muted tiny" x="106" y="402">短视频分镜</text>
+  <rect class="window" x="302" y="230" width="480" height="290" rx="12"/>
+  <text class="text mid" x="426" y="320">AIGC 创意生产 Agent</text>
+  <text class="muted tiny" x="380" y="350">生成图片、视频分镜、HTML，并进入画板继续编辑。</text>
+  <rect class="panel" x="356" y="420" width="372" height="70" rx="16"/>
+  <text class="muted tiny" x="382" y="448">给夏季气泡咖啡生成小红书首图...</text>
+  <rect class="black" x="670" y="456" width="42" height="22" rx="11"/>
+  <text fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="700" x="679" y="471">发送</text>
+
+  <!-- State 02 -->
+  <rect class="window" x="930" y="140" width="820" height="420" rx="14"/>
+  <text class="text mid" x="954" y="178">02 左侧展开状态</text>
+  <text class="muted tiny" x="954" y="204">会话列表从左侧覆盖式滑入，不挤压主画布。</text>
+  <rect class="panel" x="930" y="140" width="240" height="420" rx="14"/>
+  <text class="text label" x="956" y="176">会话抽屉</text>
+  <rect class="window" x="956" y="206" width="188" height="38" rx="10"/>
+  <text class="muted tiny" x="976" y="230">搜索对话、素材、runId...</text>
+  <rect class="window" x="956" y="266" width="188" height="48" rx="10"/>
+  <text class="text tiny" x="974" y="294">夏季气泡咖啡 / 4 个素材</text>
+  <rect class="soft" x="956" y="326" width="188" height="48" rx="10"/>
+  <text class="muted tiny" x="974" y="354">AIGC 电商首图 / 3 个版本</text>
+  <text class="muted tiny" x="956" y="506">Motion: translateX(-100%) -> 0 / 280ms</text>
+  <rect class="window" x="1222" y="230" width="420" height="290" rx="12"/>
+  <text class="text mid" x="1320" y="330">AIGC 创意生产 Agent</text>
+  <rect class="panel" x="1260" y="420" width="344" height="70" rx="16"/>
+
+  <!-- State 03 -->
+  <rect class="window" x="48" y="630" width="820" height="420" rx="14"/>
+  <text class="text mid" x="72" y="668">03 右侧产品功能展开</text>
+  <text class="muted tiny" x="72" y="694">一级功能服务本项目：画板、素材、工作流、HTML、导出。</text>
+  <rect class="panel" x="72" y="720" width="180" height="290" rx="12"/>
+  <text class="text label" x="92" y="748">对话列表</text>
+  <rect class="window" x="292" y="720" width="340" height="290" rx="12"/>
+  <text class="text mid" x="366" y="820">中间对话</text>
+  <rect class="panel" x="360" y="910" width="208" height="52" rx="14"/>
+  <rect class="panel" x="658" y="720" width="46" height="290" rx="12"/>
+  <text class="text tiny" x="674" y="752">画</text>
+  <text class="muted tiny" x="674" y="800">素</text>
+  <text class="muted tiny" x="674" y="848">流</text>
+  <text class="muted tiny" x="674" y="896">H</text>
+  <text class="muted tiny" x="674" y="944">导</text>
+  <rect class="window" x="716" y="720" width="128" height="238" rx="12"/>
+  <text class="text label" x="736" y="748">创意工具</text>
+  <text class="text tiny" x="738" y="790">画板</text>
+  <text class="muted tiny" x="738" y="828">素材</text>
+  <text class="muted tiny" x="738" y="866">工作流</text>
+  <text class="muted tiny" x="738" y="904">HTML</text>
+  <text class="muted tiny" x="738" y="942">导出</text>
+
+  <!-- State 04 -->
+  <rect class="window" x="930" y="630" width="820" height="420" rx="14"/>
+  <text class="text mid" x="954" y="668">04 画板展开状态</text>
+  <text class="muted tiny" x="954" y="694">对话推到左侧 1/3，可拖拽缩放；右侧展示全屏画板。</text>
+  <rect class="window" x="954" y="720" width="246" height="290" rx="12"/>
+  <text class="text label" x="980" y="754">对话驱动画板</text>
+  <rect class="panel" x="978" y="916" width="198" height="62" rx="14"/>
+  <text class="muted tiny" x="996" y="944">把主视觉改得更清爽...</text>
+  <rect class="soft" x="1206" y="720" width="8" height="290" rx="4"/>
+  <text class="muted tiny" x="1126" y="1032">拖拽缩放</text>
+  <rect class="panel" x="1232" y="720" width="46" height="290" rx="12"/>
+  <text class="text tiny" x="1248" y="752">画</text>
+  <text class="muted tiny" x="1248" y="800">素</text>
+  <text class="muted tiny" x="1248" y="848">流</text>
+  <rect class="window" x="1294" y="720" width="420" height="290" rx="12"/>
+  <text class="text label" x="1318" y="750">画板 / 编辑生成图片</text>
+  <rect class="blue" x="1320" y="790" width="250" height="170" rx="14"/>
+  <rect class="window" x="1406" y="842" width="76" height="88" rx="14"/>
+  <rect class="blue" x="1400" y="828" width="90" height="116" rx="16" opacity="0.22"/>
+  <rect class="panel" x="1590" y="790" width="100" height="170" rx="12"/>
+  <text class="text tiny" x="1608" y="820">图层</text>
+  <text class="muted tiny" x="1608" y="856">主视觉</text>
+  <text class="muted tiny" x="1608" y="888">选区蒙版</text>
+  <text class="muted tiny" x="1608" y="920">文案组</text>
+
+  <!-- State 05 -->
+  <rect class="window" x="48" y="1120" width="820" height="420" rx="14"/>
+  <text class="text mid" x="72" y="1158">05 图片编辑状态</text>
+  <text class="muted tiny" x="72" y="1184">编辑对话生成的图片：裁剪、局部重绘、变体、文案、导出。</text>
+  <rect class="window" x="72" y="1210" width="220" height="290" rx="12"/>
+  <text class="text label" x="96" y="1244">编辑指令</text>
+  <rect class="panel" x="96" y="1410" width="172" height="58" rx="14"/>
+  <text class="muted tiny" x="112" y="1438">重绘杯身气泡感...</text>
+  <rect class="soft" x="300" y="1210" width="8" height="290" rx="4"/>
+  <rect class="window" x="326" y="1210" width="500" height="290" rx="12"/>
+  <text class="text label" x="350" y="1240">全屏画板</text>
+  <text class="muted tiny" x="350" y="1266">选择 / 裁剪 / 局部重绘 / 变体 / 文案 / 导出</text>
+  <rect class="blue" x="356" y="1300" width="278" height="164" rx="14"/>
+  <rect class="window" x="454" y="1348" width="84" height="92" rx="14"/>
+  <rect class="orange" x="660" y="1300" width="142" height="164" rx="12"/>
+  <text class="text tiny" x="680" y="1330">重绘提示词</text>
+  <text class="muted tiny" x="680" y="1362">让杯身更有冰爽气泡感</text>
+  <rect class="black" x="680" y="1420" width="84" height="28" rx="14"/>
+  <text fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="700" x="696" y="1438">生成变体</text>
+
+  <rect class="window" x="930" y="1120" width="820" height="420" rx="14"/>
+  <text class="text mid" x="954" y="1158">分区功能结论</text>
+  <text class="muted small" x="954" y="1196">左侧：会话上下文 / 历史创意任务 / runId / 素材数量</text>
+  <text class="muted small" x="954" y="1232">中间：对话驱动生成和编辑，不被右侧工具长期抢占</text>
+  <text class="muted small" x="954" y="1268">右侧：AIGC 产品能力，不是 Codex 功能照抄</text>
+  <text class="text small" x="980" y="1322">右侧一级功能：</text>
+  <text class="muted small" x="980" y="1360">画板：编辑生成图片、拼版、局部重绘、变体</text>
+  <text class="muted small" x="980" y="1394">素材：管理图片、视频分镜、HTML、合规报告</text>
+  <text class="muted small" x="980" y="1428">工作流：查看 Plan / Act / Asset / Review 步骤</text>
+  <text class="muted small" x="980" y="1462">HTML：预览和微调落地页</text>
+  <text class="muted small" x="980" y="1496">导出：打包素材和生成交付说明</text>
+</svg>

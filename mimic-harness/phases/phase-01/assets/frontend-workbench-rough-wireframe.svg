@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">Ninic Creative Agent Studio 前端工作台粗线框图</title>
+  <desc id="desc">Phase 1 前端大概布局：左侧导航，中间创意工作台，右侧 Trace 和工具调用，底部素材预览。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f6f7f9; }
+      .panel { fill: #ffffff; stroke: #d8dde6; stroke-width: 2; }
+      .soft { fill: #f0f3f7; stroke: #d8dde6; stroke-width: 1.5; }
+      .accent { fill: #e8f3ff; stroke: #5b8def; stroke-width: 2; }
+      .ok { fill: #e8f7ef; stroke: #42a56a; stroke-width: 1.5; }
+      .warn { fill: #fff5df; stroke: #d99021; stroke-width: 1.5; }
+      .danger { fill: #fff0f0; stroke: #df5b5b; stroke-width: 1.5; }
+      .text { fill: #20242c; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .muted { fill: #687180; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .small { font-size: 18px; }
+      .mid { font-size: 22px; font-weight: 600; }
+      .big { font-size: 30px; font-weight: 700; }
+      .tiny { font-size: 15px; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1440" height="920"/>
+
+  <text class="text big" x="44" y="54">Ninic Creative Agent Studio</text>
+  <text class="muted small" x="44" y="84">Phase 1 前端粗线框：AIGC 创意生产工作流 Agent + AgentOps 工程底座</text>
+
+  <rect class="panel" x="36" y="112" width="250" height="760" rx="8"/>
+  <text class="text mid" x="60" y="154">左侧导航</text>
+  <rect class="accent" x="56" y="184" width="190" height="44" rx="8"/>
+  <text class="text small" x="76" y="213">工作台</text>
+  <rect class="soft" x="56" y="244" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="269">Campaigns</text>
+  <rect class="soft" x="56" y="294" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="319">Runs</text>
+  <rect class="soft" x="56" y="344" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="369">Assets</text>
+  <rect class="soft" x="56" y="394" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="419">Workflows</text>
+  <rect class="soft" x="56" y="444" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="469">Agents / Tools</text>
+  <rect class="soft" x="56" y="494" width="190" height="38" rx="8"/>
+  <text class="muted small" x="76" y="519">Observability</text>
+  <rect class="soft" x="56" y="780" width="190" height="48" rx="8"/>
+  <text class="muted small" x="76" y="811">Settings</text>
+
+  <rect class="panel" x="310" y="112" width="770" height="760" rx="8"/>
+  <text class="text mid" x="338" y="154">中间：Creative Workbench</text>
+  <text class="muted small" x="338" y="184">默认 Demo：夏季气泡咖啡营销素材生成</text>
+
+  <rect class="soft" x="338" y="212" width="714" height="74" rx="8"/>
+  <text class="text small" x="362" y="244">顶部控制条：Runtime Switch / Model Selector / 降级状态 / 运行耗时</text>
+  <rect class="ok" x="842" y="232" width="94" height="34" rx="8"/>
+  <text class="text tiny" x="863" y="254">Java</text>
+  <rect class="soft" x="946" y="232" width="84" height="34" rx="8"/>
+  <text class="muted tiny" x="964" y="254">Python</text>
+
+  <rect class="accent" x="338" y="314" width="714" height="150" rx="8"/>
+  <text class="text mid" x="362" y="350">创意 Brief 输入区</text>
+  <text class="muted small" x="362" y="386">输入：品牌、目标人群、渠道、风格、想生成的图片 / 视频 / HTML</text>
+  <rect class="panel" x="362" y="408" width="560" height="34" rx="6"/>
+  <text class="muted tiny" x="380" y="431">例：给夏季气泡咖啡生成一套小红书图文、15 秒视频分镜和落地页 HTML...</text>
+  <rect class="text" x="936" y="406" width="90" height="38" rx="8"/>
+  <text fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" font-weight="700" x="965" y="431">生成</text>
+
+  <rect class="soft" x="338" y="492" width="714" height="180" rx="8"/>
+  <text class="text mid" x="362" y="528">流式消息区</text>
+  <text class="muted small" x="362" y="562">Agent 正在拆解任务：品牌视觉、图片提示词、视频分镜、HTML 页面结构、合规检查...</text>
+  <rect class="panel" x="362" y="590" width="646" height="54" rx="8"/>
+  <text class="muted tiny" x="386" y="623">SSE message_delta 持续追加，这里展示实时生成内容。</text>
+
+  <text class="text mid" x="338" y="714">底部：生成素材预览</text>
+  <rect class="ok" x="338" y="738" width="165" height="94" rx="8"/>
+  <text class="text small" x="362" y="775">图片素材</text>
+  <text class="muted tiny" x="362" y="805">海报 / 商品图</text>
+  <rect class="warn" x="520" y="738" width="165" height="94" rx="8"/>
+  <text class="text small" x="544" y="775">视频分镜</text>
+  <text class="muted tiny" x="544" y="805">15 秒脚本</text>
+  <rect class="accent" x="702" y="738" width="165" height="94" rx="8"/>
+  <text class="text small" x="726" y="775">HTML 预览</text>
+  <text class="muted tiny" x="726" y="805">落地页片段</text>
+  <rect class="danger" x="884" y="738" width="168" height="94" rx="8"/>
+  <text class="text small" x="908" y="775">合规报告</text>
+  <text class="muted tiny" x="908" y="805">风险提示</text>
+
+  <rect class="panel" x="1104" y="112" width="300" height="760" rx="8"/>
+  <text class="text mid" x="1130" y="154">右侧：AgentOps</text>
+  <text class="muted small" x="1130" y="184">Trace / 工具 / 错误 / 指标</text>
+
+  <rect class="soft" x="1130" y="216" width="248" height="248" rx="8"/>
+  <text class="text small" x="1152" y="250">Trace Timeline</text>
+  <circle cx="1160" cy="286" r="7" fill="#5b8def"/>
+  <text class="muted tiny" x="1180" y="292">planner_started</text>
+  <circle cx="1160" cy="326" r="7" fill="#5b8def"/>
+  <text class="muted tiny" x="1180" y="332">model_selected</text>
+  <circle cx="1160" cy="366" r="7" fill="#42a56a"/>
+  <text class="muted tiny" x="1180" y="372">asset_created</text>
+  <circle cx="1160" cy="406" r="7" fill="#d99021"/>
+  <text class="muted tiny" x="1180" y="412">review_finished</text>
+
+  <rect class="soft" x="1130" y="490" width="248" height="190" rx="8"/>
+  <text class="text small" x="1152" y="524">Tool Calls</text>
+  <rect class="panel" x="1152" y="548" width="204" height="34" rx="6"/>
+  <text class="muted tiny" x="1166" y="570">image_generator</text>
+  <rect class="panel" x="1152" y="594" width="204" height="34" rx="6"/>
+  <text class="muted tiny" x="1166" y="616">html_builder</text>
+  <rect class="panel" x="1152" y="640" width="204" height="34" rx="6"/>
+  <text class="muted tiny" x="1166" y="662">compliance_checker</text>
+
+  <rect class="soft" x="1130" y="706" width="248" height="126" rx="8"/>
+  <text class="text small" x="1152" y="740">错误和降级状态</text>
+  <text class="muted tiny" x="1152" y="770">后端不可用 / SSE 中断</text>
+  <text class="muted tiny" x="1152" y="798">模型失败时降级到 Mock</text>
+</svg>

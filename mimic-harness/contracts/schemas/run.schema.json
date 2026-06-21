@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/run.schema.json",
+  "title": "Run",
+  "description": "一次 Agent 运行记录。它串起用户请求、SSE 流、Trace、工具调用和最终素材。",
+  "type": "object",
+  "required": ["runId", "threadId", "runtime", "scenario", "status", "createdAt"],
+  "properties": {
+    "runId": {
+      "type": "string",
+      "description": "运行 ID。一次点击生成按钮会创建一个 run。"
+    },
+    "threadId": {
+      "type": "string",
+      "description": "会话 ID。用于把运行记录挂到对应会话下。"
+    },
+    "runtime": {
+      "type": "string",
+      "description": "本次运行使用的后端实现。java 和 python 必须输出同构数据。",
+      "enum": ["java", "python"]
+    },
+    "scenario": {
+      "type": "string",
+      "description": "业务场景编码。Phase 1 固定为夏季气泡咖啡营销素材生成。",
+      "enum": ["summer_bubble_coffee_campaign"]
+    },
+    "status": {
+      "type": "string",
+      "description": "运行状态。前端根据它展示进行中、成功、失败或已取消。",
+      "enum": ["created", "running", "succeeded", "failed", "cancelled"]
+    },
+    "modelProvider": {
+      "type": "string",
+      "description": "模型供应商。Phase 1 可为 mock，后续真实接入时记录 qwen、doubao 等。"
+    },
+    "model": {
+      "type": "string",
+      "description": "模型名称或模型 ID。用于排查一次 run 到底用了哪个模型。"
+    },
+    "startedAt": {
+      "type": "string",
+      "description": "运行开始时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "type": "string",
+      "description": "运行结束时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "运行记录创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "失败错误码。成功时为空，失败时必须和 error.schema.json 保持一致。"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "中文错误提示。前端可直接展示给用户。"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,788 @@
+openapi: 3.1.0
+info:
+  title: Ninic Creative Agent Studio Agent API
+  version: 0.1.0
+  description: >
+    Phase 1 正式 Contracts 基线。前端、Java Runtime、Python Runtime 必须共同遵守本文件。
+    本阶段只覆盖 Mock SSE 主链路，不接真实模型、数据库、RAG、MQ、MCP 或对象存储。
+servers:
+  - url: http://localhost:8080
+    description: Java Runtime
+  - url: http://localhost:8000
+    description: Python Runtime
+tags:
+  - name: Runtime
+    description: Runtime 健康状态和 Java/Python 切换。
+  - name: Models
+    description: Phase 1 Mock 模型列表。
+  - name: Threads
+    description: 会话和消息。
+  - name: Runs
+    description: AIGC Campaign Run 和 SSE 主链路。
+  - name: Assets
+    description: Mock 图片、视频分镜、HTML、合规报告资产。
+  - name: HtmlPreview
+    description: HTML 落地页预览。
+  - name: Compliance
+    description: Mock 合规检查。
+paths:
+  /api/health:
+    get:
+      tags: [Runtime]
+      summary: 健康检查
+      operationId: getHealth
+      responses:
+        "200":
+          description: 服务可用
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+
+  /api/runtimes:
+    get:
+      tags: [Runtime]
+      summary: Runtime 列表
+      operationId: listRuntimes
+      responses:
+        "200":
+          description: Java / Python Runtime 状态列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runtimes]
+                properties:
+                  runtimes:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/RuntimeInfo"
+
+  /api/runtimes/{runtime}:
+    get:
+      tags: [Runtime]
+      summary: Runtime 详情
+      operationId: getRuntime
+      parameters:
+        - $ref: "#/components/parameters/Runtime"
+      responses:
+        "200":
+          description: Runtime 详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeInfo"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /api/models:
+    get:
+      tags: [Models]
+      summary: 模型列表
+      operationId: listModels
+      responses:
+        "200":
+          description: Phase 1 可用 Mock 模型列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [models]
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ModelInfo"
+
+  /api/threads:
+    get:
+      tags: [Threads]
+      summary: 会话列表
+      operationId: listThreads
+      responses:
+        "200":
+          description: 会话列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [threads]
+                properties:
+                  threads:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Thread"
+    post:
+      tags: [Threads]
+      summary: 创建会话
+      operationId: createThread
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateThreadRequest"
+      responses:
+        "200":
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Thread"
+
+  /api/threads/{threadId}:
+    get:
+      tags: [Threads]
+      summary: 会话详情
+      operationId: getThread
+      parameters:
+        - $ref: "#/components/parameters/ThreadId"
+      responses:
+        "200":
+          description: 会话详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Thread"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/threads/{threadId}/messages:
+    get:
+      tags: [Threads]
+      summary: 会话消息
+      operationId: listMessages
+      parameters:
+        - $ref: "#/components/parameters/ThreadId"
+      responses:
+        "200":
+          description: 消息列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [messages]
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Message"
+
+  /api/threads/{threadId}/runs/stream:
+    post:
+      tags: [Runs]
+      summary: 创建 AIGC Campaign Run 并通过 SSE 返回流式事件
+      operationId: streamCampaignRun
+      parameters:
+        - $ref: "#/components/parameters/ThreadId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RunRequest"
+      responses:
+        "200":
+          description: SSE 流式响应
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: 事件格式见 contracts/events/sse-events.md
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /api/runs:
+    get:
+      tags: [Runs]
+      summary: Run 列表
+      operationId: listRuns
+      responses:
+        "200":
+          description: Run 列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runs]
+                properties:
+                  runs:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Run"
+
+  /api/runs/{runId}:
+    get:
+      tags: [Runs]
+      summary: Run 详情
+      operationId: getRun
+      parameters:
+        - $ref: "#/components/parameters/RunId"
+      responses:
+        "200":
+          description: Run 详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Run"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/runs/{runId}/trace:
+    get:
+      tags: [Runs]
+      summary: 查询一次 Run 的 Trace
+      operationId: getRunTrace
+      parameters:
+        - $ref: "#/components/parameters/RunId"
+      responses:
+        "200":
+          description: Trace 事件列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runId, events]
+                properties:
+                  runId:
+                    type: string
+                  events:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/TraceEvent"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/assets:
+    get:
+      tags: [Assets]
+      summary: 资产列表
+      operationId: listAssets
+      responses:
+        "200":
+          description: Mock 资产列表
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [assets]
+                properties:
+                  assets:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CreativeAsset"
+
+  /api/assets/{assetId}:
+    get:
+      tags: [Assets]
+      summary: 资产详情
+      operationId: getAsset
+      parameters:
+        - $ref: "#/components/parameters/AssetId"
+      responses:
+        "200":
+          description: Mock 资产详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreativeAsset"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/html/previews:
+    post:
+      tags: [HtmlPreview]
+      summary: 创建 HTML 预览
+      operationId: createHtmlPreview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateHtmlPreviewRequest"
+      responses:
+        "200":
+          description: HTML 预览创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HtmlPreview"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /api/html/previews/{previewId}:
+    get:
+      tags: [HtmlPreview]
+      summary: HTML 预览详情
+      operationId: getHtmlPreview
+      parameters:
+        - $ref: "#/components/parameters/PreviewId"
+      responses:
+        "200":
+          description: HTML 预览详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HtmlPreview"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/compliance/reviews:
+    post:
+      tags: [Compliance]
+      summary: 创建合规检查
+      operationId: createComplianceReview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateComplianceReviewRequest"
+      responses:
+        "200":
+          description: 合规检查创建成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplianceReview"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /api/compliance/reviews/{reviewId}:
+    get:
+      tags: [Compliance]
+      summary: 合规检查详情
+      operationId: getComplianceReview
+      parameters:
+        - $ref: "#/components/parameters/ReviewId"
+      responses:
+        "200":
+          description: 合规检查详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplianceReview"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+components:
+  parameters:
+    Runtime:
+      name: runtime
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/RuntimeType"
+    ThreadId:
+      name: threadId
+      in: path
+      required: true
+      schema:
+        type: string
+    RunId:
+      name: runId
+      in: path
+      required: true
+      schema:
+        type: string
+    AssetId:
+      name: assetId
+      in: path
+      required: true
+      schema:
+        type: string
+    PreviewId:
+      name: previewId
+      in: path
+      required: true
+      schema:
+        type: string
+    ReviewId:
+      name: reviewId
+      in: path
+      required: true
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: 请求参数错误
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: 资源不存在
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  schemas:
+    RuntimeType:
+      type: string
+      enum: [java, python]
+
+    RuntimeStatus:
+      type: string
+      enum: [online, offline, degraded]
+
+    HealthResponse:
+      type: object
+      required: [status, runtime, serviceName, version, createdAt]
+      properties:
+        status:
+          type: string
+          enum: [ok]
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        serviceName:
+          type: string
+          examples: [java-agent, python-agent]
+        version:
+          type: string
+          examples: ["0.1.0"]
+        createdAt:
+          type: string
+          format: date-time
+
+    RuntimeInfo:
+      type: object
+      required: [runtime, serviceName, status, baseUrl, mockMode]
+      properties:
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        serviceName:
+          type: string
+        status:
+          $ref: "#/components/schemas/RuntimeStatus"
+        baseUrl:
+          type: string
+        mockMode:
+          type: boolean
+        message:
+          type: string
+
+    ModelInfo:
+      type: object
+      required: [provider, model, displayName, capabilities, mock]
+      properties:
+        provider:
+          type: string
+          examples: [mock]
+        model:
+          type: string
+          examples: [mock-creative-agent-v1]
+        displayName:
+          type: string
+          examples: [Mock Creative Agent]
+        capabilities:
+          type: array
+          items:
+            type: string
+            enum: [text, image, video, html, compliance]
+        mock:
+          type: boolean
+
+    CreateThreadRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          examples: [夏季气泡咖啡营销素材生成]
+        campaignId:
+          type: string
+
+    Thread:
+      type: object
+      required: [threadId, title, createdAt, updatedAt]
+      properties:
+        threadId:
+          type: string
+        campaignId:
+          type: string
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      required: [messageId, threadId, role, content, createdAt]
+      properties:
+        messageId:
+          type: string
+        threadId:
+          type: string
+        role:
+          type: string
+          enum: [user, assistant, system, tool]
+        content:
+          type: string
+        runId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    RunStatus:
+      type: string
+      enum: [created, running, succeeded, failed, cancelled]
+
+    RunScenario:
+      type: string
+      enum: [summer_bubble_coffee_campaign]
+
+    RunRequest:
+      type: object
+      required: [prompt, runtime, scenario, modelProvider, model, mockMode]
+      properties:
+        prompt:
+          type: string
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        scenario:
+          $ref: "#/components/schemas/RunScenario"
+        modelProvider:
+          type: string
+          examples: [mock]
+        model:
+          type: string
+          examples: [mock-creative-agent-v1]
+        mockMode:
+          type: boolean
+
+    Run:
+      type: object
+      required: [runId, threadId, runtime, scenario, status, createdAt]
+      properties:
+        runId:
+          type: string
+        threadId:
+          type: string
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        scenario:
+          $ref: "#/components/schemas/RunScenario"
+        status:
+          $ref: "#/components/schemas/RunStatus"
+        modelProvider:
+          type: string
+        model:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+
+    TraceEventType:
+      type: string
+      enum:
+        - planner_started
+        - planner_finished
+        - model_selected
+        - tool_call_started
+        - tool_call_finished
+        - asset_created
+        - review_started
+        - review_finished
+        - fallback_placeholder
+
+    TraceEventStatus:
+      type: string
+      enum: [pending, running, succeeded, failed]
+
+    TraceEvent:
+      type: object
+      required: [eventId, runId, threadId, runtime, type, title, status, createdAt]
+      properties:
+        eventId:
+          type: string
+        runId:
+          type: string
+        threadId:
+          type: string
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        type:
+          $ref: "#/components/schemas/TraceEventType"
+        title:
+          type: string
+        detail:
+          type: string
+        status:
+          $ref: "#/components/schemas/TraceEventStatus"
+        toolName:
+          type: string
+        assetId:
+          type: string
+        parentEventId:
+          type: string
+        durationMs:
+          type: integer
+          minimum: 0
+        payload:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    CreativeAssetType:
+      type: string
+      enum: [image, video_storyboard, html, compliance_report]
+
+    CreativeAssetStatus:
+      type: string
+      enum: [pending, running, succeeded, failed]
+
+    CreativeAsset:
+      type: object
+      required: [assetId, runId, type, title, status, createdAt]
+      properties:
+        assetId:
+          type: string
+        runId:
+          type: string
+        type:
+          $ref: "#/components/schemas/CreativeAssetType"
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          $ref: "#/components/schemas/CreativeAssetStatus"
+        previewUrl:
+          type: string
+        htmlSnippet:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateHtmlPreviewRequest:
+      type: object
+      required: [runId, htmlSnippet]
+      properties:
+        runId:
+          type: string
+        assetId:
+          type: string
+        htmlSnippet:
+          type: string
+
+    HtmlPreview:
+      type: object
+      required: [previewId, runId, htmlSnippet, status, createdAt]
+      properties:
+        previewId:
+          type: string
+        runId:
+          type: string
+        assetId:
+          type: string
+        htmlSnippet:
+          type: string
+        status:
+          type: string
+          enum: [created, empty, failed]
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateComplianceReviewRequest:
+      type: object
+      required: [runId, assetIds]
+      properties:
+        runId:
+          type: string
+        assetIds:
+          type: array
+          items:
+            type: string
+
+    ComplianceReview:
+      type: object
+      required: [reviewId, runId, status, passed, items, createdAt]
+      properties:
+        reviewId:
+          type: string
+        runId:
+          type: string
+        status:
+          type: string
+          enum: [pending, running, succeeded, failed]
+        passed:
+          type: boolean
+        summary:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ComplianceItem"
+        createdAt:
+          type: string
+          format: date-time
+
+    ComplianceItem:
+      type: object
+      required: [ruleCode, title, level, passed]
+      properties:
+        ruleCode:
+          type: string
+        title:
+          type: string
+        level:
+          type: string
+          enum: [info, warning, error]
+        passed:
+          type: boolean
+        detail:
+          type: string
+
+    ErrorResponse:
+      type: object
+      required: [code, message, createdAt]
+      properties:
+        code:
+          type: string
+          enum:
+            - RUNTIME_UNAVAILABLE
+            - SSE_CONNECT_FAILED
+            - SSE_STREAM_INTERRUPTED
+            - RUN_FAILED
+            - INVALID_REQUEST
+            - INVALID_RUNTIME
+            - UNKNOWN_EVENT_TYPE
+            - INVALID_ASSET_PAYLOAD
+            - EMPTY_HTML_PREVIEW
+            - NOT_FOUND
+        message:
+          type: string
+        detail:
+          type: string
+        requestId:
+          type: string
+        runId:
+          type: string
+        runtime:
+          $ref: "#/components/schemas/RuntimeType"
+        createdAt:
+          type: string
+          format: date-time

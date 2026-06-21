@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninic-creative-agent.local/contracts/schemas/message.schema.json",
+  "title": "Message",
+  "description": "会话消息。用于记录用户输入、Agent 回复、系统消息和工具消息。",
+  "type": "object",
+  "required": ["messageId", "threadId", "role", "content", "createdAt"],
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "消息 ID。前端列表渲染和后端追踪都使用它定位单条消息。"
+    },
+    "threadId": {
+      "type": "string",
+      "description": "会话 ID。一次创意工作台会话下可以产生多条消息和多次 run。"
+    },
+    "runId": {
+      "type": "string",
+      "description": "关联的运行 ID。用户消息可能为空，Agent 输出通常会关联一次 run。"
+    },
+    "role": {
+      "type": "string",
+      "description": "消息角色。user 是用户，assistant 是 Agent，system 是系统，tool 是工具返回。",
+      "enum": ["user", "assistant", "system", "tool"]
+    },
+    "content": {
+      "type": "string",
+      "description": "消息正文。前端直接展示，后端也会作为上下文输入。"
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "消息创建时间，ISO 8601 date-time 格式。",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

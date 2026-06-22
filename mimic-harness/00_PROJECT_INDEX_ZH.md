@@ -112,7 +112,10 @@ contracts/README.md
 ```text
 Phase 1 主题已确认。
 需求冻结、简单设计、Contracts 先行已完成。
-Phase 1.5 Figma 高保真设计稿进行中，Figma 文件已创建。
+Phase 1.5 已完成 SVG 高保真设计基线验收。
+Phase 1.6 高保真代码原型已完成。
+Phase 1.7 前端静态工程化已完成并封版。
+Phase 1.8 后端双语言 Mock SSE 开工规划已完成。
 ```
 
 已完成：
@@ -128,12 +131,18 @@ Phase 1.5 Figma 高保真设计稿进行中，Figma 文件已创建。
 - 产品主题确认记录
 - 新对话续接 Prompt 与开工协议
 - Phase 1 启动文档和生产目录
+- Phase 1.5 设计基线验收记录
+- Phase 1.6 前端高保真代码原型骨架
+- Phase 1.7 前端静态工程化封版验收
+- Phase 1.8 后端双语言 Mock SSE 开工规划
+- Phase 1.8 接口 Mock 参数与可复制 JSON 文档
 
 下一步：
 
 ```text
-Phase 1.5：继续 Figma 高保真设计稿，完善 Creative Workbench 高保真页面、组件状态和开发标注
-Figma：https://www.figma.com/design/cgPS6dmTGjDN1wxDYb9AhN
+Phase 1.8：按 15_PHASE1_8_BACKEND_MOCK_SSE_PLAN_ZH.md 搭建 Java / Python 七层模块骨架
+接口调试 JSON 以 phases/phase-01/16_PHASE1_8_API_MOCK_EXAMPLES_ZH.md 为准
+Figma 后续同步：https://www.figma.com/design/cgPS6dmTGjDN1wxDYb9AhN
 ```
 
 ## 6. 协作约定
@@ -141,6 +150,7 @@ Figma：https://www.figma.com/design/cgPS6dmTGjDN1wxDYb9AhN
 所有后续代码必须遵守：
 
 - 中文注释优先。
+- TSX/CSS/Tailwind 注释必须说明管理区域、接口或 mock 来源、改值影响。
 - 中文结构化日志。
 - 中文业务异常。
 - 前端用户提示中文。

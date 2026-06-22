@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ninic Creative Agent Studio">
+  <rect width="64" height="64" fill="#111111"/>
+  <path d="M18 42V22h28v20H18Z" fill="#ffffff"/>
+  <path d="M23 37V27h18v10H23Z" fill="#111111"/>
+  <path d="M27 31h3v3h-3v-3Zm7 0h3v3h-3v-3Z" fill="#ffffff"/>
+  <path d="M32 15v7" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M13 30h5m28 0h5" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+</svg>

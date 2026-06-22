@@ -30,3 +30,11 @@ infrastructure 实现 ports
 bootstrap 负责组装依赖
 ```
 
+当前阶段：
+
+```text
+Phase 1.8 已完成开工规划。
+先按 phases/phase-01/15_PHASE1_8_BACKEND_MOCK_SSE_PLAN_ZH.md 落地 Java/Python Mock SSE。
+Swagger 和可复制接口 JSON 按 phases/phase-01/16_PHASE1_8_API_MOCK_EXAMPLES_ZH.md 落地。
+本阶段不接真实模型、数据库、Redis、MQ、RAG、对象存储。
+```

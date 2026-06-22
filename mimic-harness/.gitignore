@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+
+# Node / frontend
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Java
+target/
+*.class
+
+# Local env and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Tool caches
+.turbo/
+.cache/
+.playwright-cli/

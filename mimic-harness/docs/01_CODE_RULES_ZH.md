@@ -334,6 +334,106 @@ shared/       # API、UI、配置、工具
 - optimistic message
 - 文件上传状态流转
 
+Phase 1 学习阶段额外要求：
+
+```text
+这是面向小白学习的源码，不按普通生产项目的低注释密度执行。
+TypeScript 类型里的每个字段都必须写中文注释。
+mock 数据里的每个对象字段都必须写中文注释。
+组件 props 的每个字段都必须写中文注释。
+重要 state 变量必须逐个写中文注释。
+复杂 JSX 分区必须写中文注释说明这一块页面负责什么。
+注释要解释字段用途、数据来源、页面如何使用，不允许只重复字段名。
+```
+
+### 5.4.1 TSX / CSS 详细注释门禁
+
+前端 TSX、CSS、Tailwind `className`、样式变量、交互状态必须写详细中文注释。
+
+注释必须回答三件事：
+
+```text
+1. 这段代码管理哪个页面、哪个区域、哪个组件。
+2. 这里调用哪个接口、读取哪个 mock、未来替换成哪个真实接口。
+3. 修改关键值会影响什么布局、动画、交互、数据流或接口联调。
+```
+
+必须注释的位置：
+
+```text
+页面或组件文件顶部：
+  说明当前文件管理的页面区域、核心交互、关联接口和 mock 数据来源。
+
+TypeScript 类型字段：
+  每个字段都要说明业务含义、数据来源、前端展示位置、是否来自 contracts。
+
+props 字段：
+  每个字段都要说明由哪个父组件传入、控制子组件哪块 UI、改字段会影响什么。
+
+state / ref / memo 字段：
+  说明该状态控制哪个区域、默认值为什么这么设、改默认值会影响什么交互。
+
+接口调用点：
+  说明接口路径、请求目的、成功后更新哪些状态、失败后展示什么中文提示。
+
+mock 数据：
+  说明 mock 对应的未来接口、哪些字段必须和 OpenAPI / Schema 对齐。
+
+JSX 分区：
+  说明这一段页面管理左侧列表、中间对话、右侧能力面板、画板、输入框等哪个区域。
+
+className / Tailwind 分组：
+  在布局、宽度、高度、间距、圆角、阴影、层级、响应式、动画旁说明改值影响。
+
+CSS 变量和数字常量：
+  说明单位、允许范围和改动影响，例如拖拽阈值、动画时长、缩放比例、面板宽度。
+
+事件处理函数：
+  说明来自哪个按钮或拖拽区域，会改变哪些状态，是否会触发接口、SSE、缓存或后续后端联调。
+```
+
+TSX 示例：
+
+```tsx
+// 画板右侧工具面板：管理 AI 图片滤镜、局部重绘、图片编辑等能力入口。
+// Phase 1.7 使用本地 mock；后续真实接口预期为 GET /api/canvas/tools。
+// 修改默认 activeTool 会影响首次进入画板时右侧展示哪个工具面板。
+const [activeTool, setActiveTool] = useState<CanvasToolId>("filter");
+
+// 画布缩放比例：控制 10240x10240 超大画布的视觉缩放，范围必须保持 20%-200%。
+// 改小 minZoom 会让用户更容易迷失；改大 maxZoom 会增加选区和图片拖拽计算压力。
+const zoomRange = { min: 20, max: 200 };
+
+// 点击滤镜卡片后只更新前端预览状态；后续接入 POST /api/assets/{assetId}/filters 生成真实滤镜图。
+function handleApplyFilter(filterId: string) {
+  setPreviewFilterId(filterId);
+}
+```
+
+CSS / Tailwind 示例：
+
+```tsx
+// 外层画布视口：负责占满可编辑区域，并隐藏 10240x10240 画布拖动时超出的部分。
+// 改 overflow 会影响拖动画布时是否露出浏览器滚动条。
+<section className="relative h-full overflow-hidden bg-[#f7f7f4]">
+  {/* 1024x1024 默认空白图：作为画布中的第一张素材，可拖动、缩放和被选择工具选中。 */}
+  <div className="absolute h-[1024px] w-[1024px] rounded-[28px] bg-white" />
+</section>
+```
+
+```css
+/* 右侧能力面板宽度：控制工具面板展开后的占屏比例。
+   改大后画布可视区域会变小；改小后滤镜列表和编辑项可能换行。 */
+.capabilityPanel {
+  width: 320px;
+}
+
+/* 画板展开动画：必须和面板宽度变化匹配，避免看起来像突然跳出来。 */
+.canvasPanel {
+  transition: width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+```
+
 ### 5.5 前端提示规则
 
 用户可见文案必须中文。

@@ -19,10 +19,8 @@ shadcn/ui
 第一版页面：
 
 ```text
-/           聊天主界面
-/threads    会话列表
-/tools      工具列表和工具测试
-/settings   后端切换、模型配置、API Key 状态
+/           AIGC 创意生产 Agent 工作台
+/settings   Java / Python Runtime 切换、降级状态、Mock 工具调用登记
 ```
 
 前端分层：
@@ -40,4 +38,11 @@ apps/web/src/
 ```text
 Java Runtime   -> http://localhost:8080
 Python Runtime -> http://localhost:8000
+```
+
+当前 Phase 1.6 代码入口：
+
+```text
+apps/web/src/app/page.tsx
+apps/web/src/features/workbench/components/CreativeWorkbenchPage.tsx
 ```

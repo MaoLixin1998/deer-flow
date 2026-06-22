@@ -35,10 +35,10 @@ docs/09_PHASE_DELIVERY_PROCESS_ZH.md
 | 2 | 需求冻结 | 已完成 | `03_PHASE_SCOPE_ZH.md`，产品级蓝图 + Phase 1 实施切片 + 工程模块边界 |
 | 3 | 简单设计 | 已完成 | `04_SIMPLE_DESIGN_ZH.md` |
 | 4 | Contracts 先行 | 已完成 | `05_CONTRACTS_BASELINE_ZH.md`、`contracts/` |
-| 5 | Figma 高保真设计稿 | 进行中 | `06_FIGMA_DESIGN_HANDOFF_ZH.md`、`07_FIGMA_PHASE_START_ZH.md`、[Figma 文件](https://www.figma.com/design/cgPS6dmTGjDN1wxDYb9AhN) |
-| 6 | 高保真代码原型 | 未开始 | 待按 Figma 和 contracts 创建 `frontend/apps/web/` |
-| 7 | 前端静态开发 | 未开始 | `frontend/apps/web/` |
-| 8 | 后端双语言并行开发 | 未开始 | `services/java-agent/`、`services/python-agent/` |
+| 5 | Figma 高保真设计稿 | 已完成设计基线 | `06_FIGMA_DESIGN_HANDOFF_ZH.md`、`07_FIGMA_PHASE_START_ZH.md`、`08_DESIGN_BASELINE_ACCEPTANCE_ZH.md`、[Figma 文件](https://www.figma.com/design/cgPS6dmTGjDN1wxDYb9AhN) |
+| 6 | 高保真代码原型 | 已完成 | `09_CODE_PROTOTYPE_START_ZH.md`、`10_CODE_PROTOTYPE_VALIDATION_ZH.md`、`frontend/apps/web/` |
+| 7 | 前端静态开发 | 已完成 | `11_PHASE1_7_FRONTEND_STATIC_PLAN_ZH.md`、`12_PHASE1_7_FIGMA_PROTOTYPE_BASELINE_ZH.md`、`13_PHASE1_7_FRONTEND_STATIC_VALIDATION_ZH.md`、`14_PHASE1_7_CLOSURE_ACCEPTANCE_ZH.md`、`frontend/apps/web/` |
+| 8 | 后端双语言并行开发 | 规划完成 | `15_PHASE1_8_BACKEND_MOCK_SSE_PLAN_ZH.md`、`16_PHASE1_8_API_MOCK_EXAMPLES_ZH.md`、`services/java-agent/`、`services/python-agent/` |
 | 9 | Mock 联调 | 未开始 | 待补 |
 | 10 | 真实能力接入 | 本阶段不做 | 不适用 |
 | 11 | 测试与验收 | 未开始 | 待补 |
@@ -214,18 +214,36 @@ contracts/schemas/error.schema.json
 前端、Java Runtime、Python Runtime 必须共同遵守。
 ```
 
-下一步：
+设计基线：
 
 ```text
-已进入第 5 步：Figma 高保真设计稿。
+Phase 1.5 已完成 SVG 高保真设计基线验收。
+由于 Figma Starter 页面和调用额度限制，本阶段允许先以 SVG 基线进入 Phase 1.6。
+Figma 同步仍是后续补齐项，不能取消。
 ```
 
 ## 7. 当前下一步
 
 ```text
-继续第 5 步：Figma 高保真设计稿，当前状态为进行中。
+第 6 步：高保真代码原型已完成。
+第 7 步：前端静态开发已完成，封版产物为 14_PHASE1_7_CLOSURE_ACCEPTANCE_ZH.md。
+当前前端界面已固化到 Figma，记录产物为 12_PHASE1_7_FIGMA_PROTOTYPE_BASELINE_ZH.md。
+第一轮静态工程化拆分已完成：`PlanningHat`、`ComposerBox`。
+第二轮静态工程化拆分已完成：`ConversationListPanel`。
+第三轮静态工程化拆分已完成：`RightCapabilityPanel`。
+第四轮静态工程化拆分已完成：`CanvasPane`。
+第五轮静态工程化拆分已完成：`ConversationPane`、`SideStagePane`，`CreativeWorkbenchPage` 已收敛为总控文件。
+第六轮静态工程化拆分已完成：`mockData` 拆分为实体类型和分领域 mock 文件。
+第七轮静态工程化拆分已完成：`creative-run` 聚合实体拆分为 `message`、`asset`、`trace`、`tool`。
+第八轮静态工程化拆分已完成：工作台总控状态和行为抽到 `workbenchState.ts`、`workbenchActions.ts`。
+第九轮静态工程化拆分已完成：补齐 `shared/api` 与 `shared/sse` 联调壳。
+第十轮静态工程化拆分已完成：补齐 `runReducer.ts`，让 SSE 事件有明确的前端状态落点。
+拆分记录统一登记在 `13_PHASE1_7_FRONTEND_STATIC_VALIDATION_ZH.md`。
+Phase 1.7 封版验收登记在 `14_PHASE1_7_CLOSURE_ACCEPTANCE_ZH.md`。
 ```
 
-先产出 Figma 关键页面、设计系统、组件状态和开发标注。
-Figma 关键页面未确认前，不能开始前端高保真代码原型。
-本阶段仍不能接真实模型、数据库、RAG、MQ。
+下一步进入 Phase 1.8：后端双语言并行开发。
+先做 Java Runtime 和 Python Runtime 的 Mock SSE，不接真实模型、数据库、RAG、MQ。
+前端只接 `shared/sse/runStream.ts` 和 `features/workbench/model/runReducer.ts`，避免接口逻辑散进组件。
+Phase 1.8 开工规划已登记在 `15_PHASE1_8_BACKEND_MOCK_SSE_PLAN_ZH.md`。
+Phase 1.8 接口 Mock 参数与可复制 JSON 已登记在 `16_PHASE1_8_API_MOCK_EXAMPLES_ZH.md`。
